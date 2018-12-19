@@ -1,0 +1,35 @@
+{
+  "name": "react_demo",
+  "version": "1.0.0",
+  "description": "react webpack",
+  "main": "index.js",
+  "author": "jiantong.liu",
+  "license": "MIT",
+  "scripts": {
+    "build:web": "webpack --config  build/webpack.config.js",
+    "build:server": "webpack --config  build/webpack.config.server.js",
+    "clear": "rimraf dist",
+    "build": "yarn run clear && yarn run build:web && yarn run build:server",
+    "dev": "webpack-dev-server --config build/webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-config": "^4.4.0-beta.6",
+    "react-router-dom": "^4.3.1",
+    "url-loader": "^1.1.2"
+  }
+}
