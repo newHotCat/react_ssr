@@ -9,6 +9,7 @@ function todos (state = [], action) {
             return [...state, action.text]
             break;
         default:
+            return state
             break;
     }
 }
