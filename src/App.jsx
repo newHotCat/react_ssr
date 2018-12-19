@@ -1,6 +1,6 @@
 import React from 'react'
-
-export default class App extends React.Component {
+import {connect} from 'react-redux'
+class App extends React.Component {
     constructor () {
         super()
         this.state = {
@@ -18,6 +18,7 @@ export default class App extends React.Component {
     }
     componentDidMount() {
         console.log('componentDidMount')
+        console.log(this.props)
     }
     componentWillUpdate() {
         console.log('componentWillUpdate')
@@ -34,3 +35,9 @@ export default class App extends React.Component {
         )
     }
 }
+
+const select = (state) => {
+    console.log(state)
+}
+
+export default connect(select)(App)
