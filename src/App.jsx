@@ -1,5 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {
+    add_todo
+} from './store/action.js'
 class App extends React.Component {
     constructor () {
         super()
@@ -9,12 +12,12 @@ class App extends React.Component {
     }
     componentWillMount() {
         console.log('componentWillMount render 钱')
-        setInterval( () => {
-            let text = this.state.text + 1
-            this.setState({
-                text
-            })
-        }, 4000)
+        // setInterval( () => {
+        //     let text = this.state.text + 1
+        //     this.setState({
+        //         text
+        //     })
+        // }, 4000)
     }
     componentDidMount() {
         console.log('componentDidMount')
@@ -23,6 +26,12 @@ class App extends React.Component {
     componentWillUpdate() {
         console.log('componentWillUpdate')
     }
+    handAdd () {
+        var val = this.input.value
+        console.log(val)
+        this.props.dispatch(add_todo(val))
+        this.input.value = ''
+    }
     render () {
         return (
             <div>
@@ -30,14 +39,22 @@ class App extends React.Component {
                 <a href="/b">/b</a>
                 <a href="/a">/a</a>
                 <p>{this.state.text}</p>
+                <input type="text" name="" id="" ref={(input) => this.input = input}/>
+                <button onClick={this.handAdd.bind(this)}>点击增加</button>
+                <ul>
+                    {this.props.todos.map((item, ind) => {
+                        return <li key={ind}>{item}</li>
+                    })}
+                </ul>
+                
                 <div className="routes">{this.props.children}</div>
             </div>
         )
     }
 }
 
-const select = (state) => {
-    console.log(state)
-}
+const select = (state) =>({
+    todos: state.todos
+})
 
 export default connect(select)(App)

@@ -1,9 +1,9 @@
-import {createStore, combineReducers} from 'redux'
+import { combineReducers} from 'redux'
 import {
     ADD_TODO
-} from './action.jsx'
+} from './action.js'
 
-function todos (state = [], action) {
+function todos (state = [1], action) {
     switch (action.type) {
         case ADD_TODO:
             return [...state, action.text]
@@ -17,5 +17,5 @@ function todos (state = [], action) {
 const reducer = combineReducers({
     todos
 })
-const store = createStore(reducer)
-export default store;
+
+export default reducer;

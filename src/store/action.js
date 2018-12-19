@@ -1,7 +1,8 @@
 export const ADD_TODO = 'ADD_TODO'
 export function add_todo (text) {
+    console.log('123', text)
     return  {
-        tpye: ADD_TODO,
+        type: ADD_TODO,
         text
     }
 }

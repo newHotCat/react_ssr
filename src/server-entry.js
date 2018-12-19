@@ -2,6 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App.jsx'
 import { Route, Link, StaticRouter as Router, Switch, Redirect} from 'react-router-dom'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import reducer from './store/reducer'
+import {add_todo} from './store/action'
 
 import * as _ from 'lodash'
 
@@ -21,7 +25,9 @@ function NoMatch({ location }) {
 // console.log(matchRoutes(Routes(), '/'))
 
 function get (req, context) {
+    let store = createStore(reducer)
     const Routes = () => (
+      <Provider store={store}>
         <Router location={req.url} context={context}>
           <App>
             <Switch>
@@ -31,11 +37,12 @@ function get (req, context) {
             </Switch>
           </App>
         </Router>
+      </Provider>
     )
     if (context.url) {
       req.redirect(context.url)
     }
-    return Routes
+    return {Routes, store, add_todo}
 }
 
 export default get
