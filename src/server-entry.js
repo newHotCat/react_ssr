@@ -31,6 +31,7 @@ function get (req, context) {
         <Router location={req.url} context={context}>
           <App>
             <Switch>
+                <Route exact path="/c" render={() =><Redirect to={{pathname: '/b'}}></Redirect>}></Route>
                 <Route exact path="/" render={() =><Redirect to={{pathname: '/b'}}></Redirect>}></Route>
                 <Route path="/a" render={(match) =>( <h1>1234234{console.log(match, match.staticContext)}</h1>)}></Route>
                 <Route component={NoMatch} />
@@ -39,9 +40,6 @@ function get (req, context) {
         </Router>
       </Provider>
     )
-    if (context.url) {
-      req.redirect(context.url)
-    }
     return {Routes, store, add_todo}
 }
 
