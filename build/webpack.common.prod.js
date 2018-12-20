@@ -23,13 +23,13 @@ const config = {
               priority: 1,
               ...commonOptions
             },
-            commons: {
-              name: 'commons',
-              minSize: 0,
-              priority: 0,
-              // minChunks: 1,
-              ...commonOptions
-            }
+            // commons: {
+            //   name: 'commons',
+            //   minSize: 0,
+            //   priority: 0,
+            //   // minChunks: 1,
+            //   ...commonOptions
+            // }
           },
         },
         runtimeChunk: true, // 打包runtime 代码
