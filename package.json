@@ -6,20 +6,28 @@
   "author": "jiantong.liu",
   "license": "MIT",
   "scripts": {
-    "build:web": "webpack --config  build/webpack.config.js",
+    "build:web": "webpack --config  build/webpack.config.prod.js",
     "build:server": "webpack --config  build/webpack.config.server.js",
     "clear": "rimraf dist",
-    "build": "yarn run clear && yarn run build:web && yarn run build:server",
-    "dev": "webpack-dev-server --config build/webpack.config.js"
+    "build": "yarn run build:web && yarn run build:server",
+    "dev": "webpack-dev-server --config build/webpack.config.dev.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
+    "compression-webpack-plugin": "^2.0.0",
+    "css-loader": "^2.0.1",
     "express": "^4.16.4",
+    "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.5"
@@ -32,6 +40,7 @@
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "url-loader": "^1.1.2"
   }
 }

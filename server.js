@@ -4,6 +4,7 @@ const express =require('express')
 const ReactSSR = require('react-dom/server')
 
 const serverEntry = require('./dist/server-entry').default
+
 const tplPath = path.join(__dirname, './dist/index.html')
 const template = fs.readFileSync(tplPath, 'utf8') // 不指定utf-8,默认是buffer
 const app = express()
@@ -18,6 +19,7 @@ app.get('*', (req, res) => {
   str = str.replace('<!--script-->', `<script>__init_server=true</script>`)
   str = str.replace('<!--script-->', `<script>window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}</script>`)
   console.log(context)
+  console.log(str)
   if (context.url) {
     console.log(context.url)
     res.redirect(context.url)

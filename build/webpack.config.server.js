@@ -1,10 +1,14 @@
 const path = require('path')
+const common = require('./webpack.config')
+const merge = require('webpack-merge')
 
 const srcResolve = file => (path.resolve(__dirname, '..', file))
 
-module.exports = {
+const webConfig = merge(common,{
     target: 'node',
-    mode: 'production',
+    devtool: 'none',
+    mode: 'development',
+    // mode: 'production',
     entry: {
         app: srcResolve('src/server-entry.js')
     },
@@ -13,35 +17,7 @@ module.exports = {
         path: srcResolve('dist'),
         publicPath: '',
         libraryTarget: 'commonjs2' // 打包出来js模块所使用的方案  这里适合Node
-    },
-    module: {
-        rules: [
-            {
-                test: /\.jsx$/,
-                loader: 'babel-loader',
-                include: [
-                    srcResolve('src')
-                ]
-            },
-            {
-                test: /\.(js)$/,
-                loader: 'babel-loader',
-                exclude: [
-                    srcResolve('node_modules')
-                ]
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-                use: [
-                  {
-                    loader: 'url-loader',
-                    options: {
-                      limit: 8192,
-                      // name: 'static/css/font/[name].[hash:7].[ext]' 暂时没用上 png 中使用
-                    }
-                  }
-                ]
-              }
-        ]
     }
-}
+})
+
+module.exports = webConfig;

@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App.jsx'
 import { Route, Link, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './store/reducer'
+// import thunk from 'redux-thunk'
+
 import * as _ from 'lodash'
 console.log("At page 'A' :", _);
 const Routes = () => (
@@ -31,7 +33,7 @@ function NoMatch({ location }) {
 const store = createStore(reducer, window.__INITIAL_STATE__)
 // console.log(matchRoutes(Routes(), '/'))
 // if (!window.__init_server) {
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <Provider store={store}>
     <Routes/> 
     </Provider>, document.getElementById('root'))

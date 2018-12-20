@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {
     add_todo
 } from './store/action.js'
+import './pages/index.css'
 class App extends React.Component {
     constructor () {
         super()
@@ -46,7 +47,6 @@ class App extends React.Component {
                         return <li key={ind}>{item}</li>
                     })}
                 </ul>
-                
                 <div className="routes">{this.props.children}</div>
             </div>
         )
